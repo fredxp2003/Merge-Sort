@@ -1,0 +1,35 @@
+public class App {
+
+    public static void printArray(int[] array) {
+        for (int i = 0; i < array.length; i++) {
+            System.out.print(array[i] + " ");
+        }
+        System.out.println();
+    }
+    public static void main(String[] args) {
+        long startTime;
+        int arrayLength = 5;
+        int[] array = Sort.createRandomArray(arrayLength);
+        startTime = System.currentTimeMillis();
+        printArray(array);
+        int[] sortedArray = Sort.bubbleSort(array);
+        printArray(sortedArray);
+        System.out.printf("Bubble sort took %d ms%n", System.currentTimeMillis() - startTime);
+        System.out.printf(isSorted(sortedArray) ? "Array 1 is Sorted\n" : "Array 1 is Not sorted\n");
+
+        startTime = System.currentTimeMillis();
+        int[] sortedArray2 = Sort.mergeSort(array);
+        printArray(sortedArray2);
+        System.out.printf("Merge sort took %d ms%n", System.currentTimeMillis() - startTime);
+        System.out.printf(isSorted(sortedArray2) ? "Array 2 is Sorted\n" : "Array 2 is Not sorted\n");
+    }
+
+    public static boolean isSorted(int[] array) {
+        for (int i = 0; i < array.length - 1; i++) {
+            if (array[i] > array[i + 1]) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
